@@ -1,8 +1,8 @@
 **[Nate Flynn](https://github.com/nateflynn-silktide)**
 
-# Webpack WordPress Plugin Version Sync
+# Webpack WordPress MU Plugin Version Sync
 
-Easily sync your WordPress plugin version with your project's `package.json` file
+Easily sync your WordPress MU plugin version with your project's `package.json` file
 
 ___
 
@@ -11,7 +11,7 @@ ___
 Install the package as a dev dependency
 
 ```
-npm i @nateflynn/webpack-wordpress-plugin-version-sync --save-dev
+npm i @nateflynn/webpack-wordpress-mu-plugin-version-sync --save-dev
 ```
 
 *This package assumes that your code will run in an **ES2015+** environment.*
@@ -24,13 +24,16 @@ Add the following requirement to your Plugin's `webpack.config.js` file:
 
 ```js
 const path = require("path");
-const WebpackWordPressPluginSync = require("@nateflynn/webpack-wordpress-plugin-version-sync");
+const WebpackWordPressPluginSync = require("@nateflynn/webpack-wordpress-mu-plugin-version-sync");
 
 module.exports = {
     plugins: [
-        new WebpackWordpressPluginSync({
+        new WebpackWordpressMUPluginSync({
             configFile: path.resolve( __dirname, 'config.json' ),
-            outputFile: path.resolve( __dirname, 'index.php' ),
+            outputFile: [
+                path.resolve( __dirname, 'index.php' ),
+                path.resolve( __dirnamr, '../my-mu-plugin.php' )
+            ],
             replacements: {
                 '{VERSION}': process.env._npm_package_version
             },
